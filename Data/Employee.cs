@@ -18,7 +18,6 @@ namespace EmployeeManagementAPI.Data
 
         [ForeignKey(nameof(Department))]
         public int DepartmentID { get; set; }
-
         public Department Department { get; set; }
         
 

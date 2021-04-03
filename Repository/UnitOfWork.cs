@@ -18,9 +18,9 @@ namespace EmployeeManagementAPI.Repository
             _context = context;
         }
 
-        public IGenericRepository<Department> Department => _departments ??= new GenericRepository<Department>(_context);
+        public IGenericRepository<Department> Departments => _departments ??= new GenericRepository<Department>(_context);
 
-        public IGenericRepository<Employee> Employee => _employees ??=new GenericRepository<Employee>(_context);
+        public IGenericRepository<Employee> Employees => _employees ??=new GenericRepository<Employee>(_context);
 
         public void Dispose()
         {

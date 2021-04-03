@@ -10,7 +10,7 @@ namespace EmployeeManagementAPI.Models
     {
         [Required]
         [StringLength(maximumLength: 50, ErrorMessage = "Department Name is too long")]
-        public string DapartmentName { get; set; }
+        public string DepartmentName { get; set; }
 
     }
     public class DepartmentDTO : CreateDepartmentDTO

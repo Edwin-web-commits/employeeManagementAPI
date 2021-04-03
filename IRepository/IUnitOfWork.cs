@@ -8,8 +8,8 @@ namespace EmployeeManagementAPI.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<Department> Department { get; }
-        IGenericRepository<Employee> Employee { get; }
+        IGenericRepository<Department> Departments { get; }
+        IGenericRepository<Employee> Employees { get; }
 
         Task Save();
     }

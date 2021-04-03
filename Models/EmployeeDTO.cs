@@ -24,7 +24,7 @@ namespace EmployeeManagementAPI.Models
     public class EmployeeDTO: CreateEmployeeDTO
     {
         public int Id { get; set; }
-        public Department Department { get; set; }
+        public DepartmentDTO Department { get; set; }
     }
     public class UpdateEmployeeDTO: CreateEmployeeDTO
     {
