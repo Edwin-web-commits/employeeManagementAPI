@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using EmployeeManagementAPI.Configurations;
 using EmployeeManagementAPI.IRepository;
 using EmployeeManagementAPI.Repository;
+using EmployeeManagementAPI.Services;
 
 namespace EmployeeManagementAPI
 {
@@ -36,6 +37,11 @@ namespace EmployeeManagementAPI
                     options.UseSqlServer(Configuration.GetConnectionString("sqlConnection"))
                );
 
+            //configuring Identity core framework and Authentication
+            services.AddAuthentication();
+            services.ConfigureIdentity(); //This method ConfigureIdentity() is in the ServiceExtentions.cs ,thats where the Identity Framework is configured
+            services.ConfigureJWT(Configuration); // configuring JWT. The method ConfigureJWT() is in the ServiceExtensions.cs class 
+
             services.AddCors(o => {
                 o.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -46,9 +52,11 @@ namespace EmployeeManagementAPI
             
             services.AddTransient<IUnitOfWork, UnitOfWork>(); //AddTransient means a new instance of IUnitOfWork will be created whenever it is needed
 
-          //  services.AddScoped<IAuthManager, AuthManager>();
+            services.AddScoped<IAuthManager, AuthManager>();
 
-      
+           
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EmployeeManagementAPI", Version = "v1" });
@@ -75,6 +83,7 @@ namespace EmployeeManagementAPI
             app.UseCors("AllowAll"); //configure Cors
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

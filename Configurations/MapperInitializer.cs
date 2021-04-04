@@ -18,7 +18,11 @@ namespace EmployeeManagementAPI.Configurations
 
             CreateMap<Employee, EmployeeDTO>().ReverseMap();
             CreateMap<Employee, CreateEmployeeDTO>().ReverseMap();
-            CreateMap<Employee, UpdateEmployeeDTO>().ReverseMap();
+            CreateMap<Employee, LoginUserDTO>().ReverseMap();
+
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, LoginUserDTO>().ReverseMap();
+
 
         }
     }

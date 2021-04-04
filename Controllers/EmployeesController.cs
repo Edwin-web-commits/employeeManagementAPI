@@ -69,7 +69,7 @@ namespace EmployeeManagementAPI.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task<IActionResult> UpdateEmployee(int id, UpdateEmployeeDTO employeeDTO)
+        public async Task<IActionResult> UpdateEmployee(int id, LoginUserDTO employeeDTO)
         {
             if (!ModelState.IsValid || id < 1)
             {
