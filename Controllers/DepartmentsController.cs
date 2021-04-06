@@ -2,6 +2,7 @@
 using EmployeeManagementAPI.Data;
 using EmployeeManagementAPI.IRepository;
 using EmployeeManagementAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -30,9 +31,9 @@ namespace EmployeeManagementAPI.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllDepartments()
+        public async Task<IActionResult> GetAllDepartments([FromQuery] RequestParams requestParams)
         {
-            var department = await _unitOfWork.Departments.GetAll();
+            var department = await _unitOfWork.Departments.GetPagedList(requestParams);
             var result = _mapper.Map<IList<DepartmentDTO>>(department);
 
             return Ok(result);
@@ -46,12 +47,12 @@ namespace EmployeeManagementAPI.Controllers
             var result = _mapper.Map<DepartmentDTO>(department);
             return Ok(result);
         }
-
+        [Authorize(Roles="Administrator")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateDepartment(CreateDepartmentDTO departmentDTO)
+        public async Task<IActionResult> CreateDepartment([FromBody] CreateDepartmentDTO departmentDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -68,12 +69,13 @@ namespace EmployeeManagementAPI.Controllers
 
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task<IActionResult> UpdateDepartment(int id, UpdateDepartmentDTO departmentDTO)
+        public async Task<IActionResult> UpdateDepartment(int id,[FromBody] UpdateDepartmentDTO departmentDTO)
         {
             if (!ModelState.IsValid || id < 1)
             {
@@ -95,6 +97,7 @@ namespace EmployeeManagementAPI.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

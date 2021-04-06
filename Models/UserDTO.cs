@@ -22,6 +22,7 @@ namespace EmployeeManagementAPI.Models
 
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
+
         public ICollection<string> Roles { get; set; }
     }
 }

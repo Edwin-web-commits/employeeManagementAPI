@@ -81,3 +81,6 @@ C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\
 C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\net5.0\X.PagedList.dll
+C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
+C:\Users\Edwin\Desktop\Development\ASP.NET_CORE\EmployeeManagementAPI\bin\Debug\net5.0\X.PagedList.Web.Common.dll

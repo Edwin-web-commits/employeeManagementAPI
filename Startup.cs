@@ -83,6 +83,8 @@ namespace EmployeeManagementAPI
             app.UseCors("AllowAll"); //configure Cors
             app.UseRouting();
 
+            app.ConfigureExceptionHandler(); //configure global error handler
+
             app.UseAuthentication();
             app.UseAuthorization();
 

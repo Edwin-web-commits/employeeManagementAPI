@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EmployeeManagementAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace EmployeeManagementAPI.IRepository
 {
@@ -17,6 +19,7 @@ namespace EmployeeManagementAPI.IRepository
 
         //getting one item(data)
         Task<T> Get(Expression<Func<T, bool>> expression, List<string> includes = null);
+        Task<IPagedList<T>> GetPagedList(RequestParams requestParams, List<string> includes = null);
 
         //CRUD operations
         Task Insert(T entity);

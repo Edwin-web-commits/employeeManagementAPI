@@ -2,6 +2,7 @@
 using EmployeeManagementAPI.Data;
 using EmployeeManagementAPI.IRepository;
 using EmployeeManagementAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -29,9 +30,9 @@ namespace EmployeeManagementAPI.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllEmployees()
+        public async Task<IActionResult> GetAllEmployees([FromQuery] RequestParams requestParams)
          {
-            var employees = await _unitOfWork.Employees.GetAll();
+            var employees = await _unitOfWork.Employees.GetPagedList(requestParams);
             var result = _mapper.Map<IList<EmployeeDTO>>(employees);
 
             return Ok(result);
@@ -47,11 +48,12 @@ namespace EmployeeManagementAPI.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles ="Administrator")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateEmployee(EmployeeDTO employeeDTO)
+        public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeDTO employeeDTO)
         {
             if (!ModelState.IsValid) {
                 _logger.LogError($"Invalid Post Attempt In {nameof(CreateEmployee)}");
@@ -64,12 +66,13 @@ namespace EmployeeManagementAPI.Controllers
             return CreatedAtRoute("GetEmployee", new { id = employee.Id }, employee);
         }
 
+        [Authorize(Roles ="Administrator")]
         [HttpPut("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
 
-        public async Task<IActionResult> UpdateEmployee(int id, LoginUserDTO employeeDTO)
+        public async Task<IActionResult> UpdateEmployee(int id,[FromBody] LoginUserDTO employeeDTO)
         {
             if (!ModelState.IsValid || id < 1)
             {
@@ -91,6 +94,7 @@ namespace EmployeeManagementAPI.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles="Administrator")]
         [HttpDelete("{id:int}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
