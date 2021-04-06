@@ -12,23 +12,36 @@ Employee Management API built using ASP.NET CORE 5 Web API
 -Editing and updating an employee
 
 -creating an employee
+
 -deleting an-Viewing all employees
+
 -Viewing all company departments
+
 -View a specific department by Id
+
 -Editing and updating a dempartment
+
 -creating a new department
+
 -deleting a department
 
 -Paging
+
 -Api versioning
+
 -Throlling
 
 # Technologies used
 -C#
+
 -Asp.Net Core 5 web api
+
 -Swagger(documentation)
+
 -Entity framework
+
 -Identity framework
+
 -Microsoft SQL Server
 
 
