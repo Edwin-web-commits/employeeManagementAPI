@@ -6,8 +6,11 @@ Employee Management API built using ASP.NET CORE 5 Web API
 -Authorization and Authentication
 
 -Viewing all employees
+
 -View a specific employee by Id
+
 -Editing and updating an employee
+
 -creating an employee
 -deleting an-Viewing all employees
 -Viewing all company departments
